@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VERDANT LUXE ESTATES | Luxury Real Estate</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script>
+tailwind.config={
+  theme:{
+    extend:{
+      colors:{
+        brand:{
+          dark:"#080C13",
+          card:"#0F1622",
+          gold:"#D4AF37",
+          goldLight:"#F3E5AB"
+        }
+      },
+      fontFamily:{
+        serif:["Cinzel","serif"],
+        sans:["Plus Jakarta Sans","sans-serif"]
+      }
+    }
+  }
+};
+</script>
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ margin:0;
+ background:#080C13;
+ color:#E2E8F0;
+ font-family:'Plus Jakarta Sans',sans-serif
+}
+.gold-text{
+ background:linear-gradient(135deg,#FFF0CA,#D4AF37,#AA8022);
+ -webkit-background-clip:text;
+ -webkit-text-fill-color:transparent
+}
+.gold-btn{
+ background:linear-gradient(135deg,#D4AF37,#B8922A);
+ color:#080C13;
+ padding:13px 22px;
+ border-radius:30px;
+ font-size:12px;
+ font-weight:700;
+ letter-spacing:1px;
+ cursor:pointer;
+ border:0
+}
+.gold-btn:hover{opacity:.85}
+.card{
+ background:#0F1622;
+ border:1px solid #D4AF3730;
+ border-radius:16px;
+ overflow:hidden;
+ transition:.3s
+}
+.card:hover{
+ transform:translateY(-4px);
+ border-color:#D4AF37;
+ box-shadow:0 12px 30px #0005
+}
+.wrap{width:min(1200px,92%);margin:auto}
+.section{padding:85px 0;border-top:1px solid #1E293B}
+.muted{color:#94A3B8}
+.field{
+ width:100%;
+ background:#080C13;
+ border:1px solid #334155;
+ border-radius:9px;
+ padding:12px;
+ color:white;
+ margin-top:7px
+}
+.field:focus{outline:1px solid #D4AF37}
+.modal{
+ display:none;
+ position:fixed;
+ inset:0;
+ z-index:100;
+ background:#000c;
+ align-items:center;
+ justify-content:center;
+ padding:18px
+}
+.modal.show{display:flex}
+.modal-box{
+ background:#0F1622;
+ border:1px solid #D4AF3755;
+ border-radius:18px;
+ padding:25px;
+ width:min(560px,100%);
+ max-height:90vh;
+ overflow:auto
+}
+.toast{
+ position:fixed;
+ bottom:20px;
+ right:20px;
+ background:#D4AF37;
+ color:#080C13;
+ padding:15px;
+ border-radius:10px;
+ z-index:200;
+ display:none
+}
+.plan-tab{
+ border:1px solid #334155;
+ border-radius:25px;
+ padding:9px 15px;
+ font-size:12px
+}
+.plan-tab.active{background:#D4AF37;color:#080C13}
+input[type=range]{width:100%;accent-color:#D4AF37}
+nav a:hover{color:#D4AF37}
+@media(max-width:768px){
+ .section{padding:60px 0}
+ .hero-title{font-size:40px!important}
+ #desktopNav{display:none}
+ #mobileMenu{display:none}
+ #mobileMenu.show{display:flex}
+}
+</style>
+</head>
+
+<body>
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#080C13]/95 backdrop-blur-xl border-b border-slate-800">
+<div class="wrap h-20 flex items-center justify-between">
+<a href="#" class="flex items-center gap-3">
+<div class="w-11 h-11 border border-yellow-600 rounded-xl flex items-center justify-center text-yellow-500 font-serif text-2xl">V</div>
+<div>
+<div class="font-serif tracking-widest font-bold">VERDANT</div>
+<div class="text-[10px] tracking-[4px] text-yellow-600">LUXE ESTATES</div>
+</div>
+</a>
+
+<nav id="desktopNav" class="flex gap-6 text-sm text-slate-300">
+<a href="#properties">Residences</a>
+<a href="#floorplans">Floor Plans</a>
+<a href="#calculator">Calculator</a>
+<a href="#concierge">Concierge</a>
+</nav>
+
+<button class="gold-btn" onclick="openBooking('General VIP Tour')">Schedule Tour</button>
+<button class="md:hidden text-2xl" onclick="document.getElementById('mobileMenu').classList.toggle('show')">☰</button>
+</div>
+
+<nav id="mobileMenu" class="flex-col gap-4 p-5 bg-[#0F1622]">
+<a href="#properties">Residences</a>
+<a href="#floorplans">Floor Plans</a>
+<a href="#calculator">Calculator</a>
+<a href="#concierge">Concierge</a>
+</nav>
+</header>
+
+<section class="relative min-h-screen flex items-center text-center pt-32 pb-20 overflow-hidden">
+<div class="absolute inset-0">
+<img class="w-full h-full object-cover opacity-30"
+src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=80"
+alt="Luxury villa">
+<div class="absolute inset-0 bg-gradient-to-t from-[#080C13] via-[#080C13]/70 to-transparent"></div>
+</div>
+
+<div class="wrap relative z-10">
+<p class="text-yellow-300 text-xs tracking-[4px] uppercase mb-6">Private Residences & Sky Mansions</p>
+
+<h1 class="hero-title font-serif text-6xl lg:text-7xl font-bold leading-tight">
+Architectural Masterpieces<br>
+<span class="gold-text"> & Prime Living</span>
+</h1>
+
+<p class="muted max-w-2xl mx-auto mt-6 leading-7">
+Experience handpicked luxury estates in the world's most coveted enclaves.
+Designed for distinction, comfort and exceptional living.
+</p>
+
+<div class="card max-w-4xl mx-auto mt-10 p-5 text-left">
+<div class="grid md:grid-cols-4 gap-4">
+<div>
+<label class="text-xs muted">Property Type</label>
+<select id="filterType" class="field" onchange="renderProperties()">
+<option value="all">All Properties</option>
+<option value="villa">Luxury Villas</option>
+<option value="penthouse">Penthouses</option>
+<option value="waterfront">Waterfront</option>
+</select>
+</div>
+<div>
+<label class="text-xs muted">Bedrooms</label>
+<select id="filterBeds" class="field" onchange="renderProperties()">
+<option value="all">Any Bedrooms</option>
+<option value="3">3 Bedrooms</option>
+<option value="4">4 Bedrooms</option>
+<option value="5">5+ Bedrooms</option>
+</select>
+</div>
+<div>
+<label class="text-xs muted">Maximum Price</label>
+<select id="filterPrice" class="field" onchange="renderProperties()">
+<option value="all">Any Price</option>
+<option value="2500000">$2.5M</option>
+<option value="4500000">$4.5M</option>
+<option value="7000000">$7M</option>
+</select>
+</div>
+<div class="flex items-end">
+<button class="gold-btn w-full" onclick="document.getElementById('properties').scrollIntoView()">Explore Estates ↗</button>
+</div>
+</div>
+</div>
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-12 border-t border-slate-700 pt-8">
+<div><div class="text-3xl font-serif">$1.8B+</div><p class="muted text-xs mt-2">PORTFOLIO VALUE</p></div>
+<div><div class="text-3xl font-serif text-yellow-500">100%</div><p class="muted text-xs mt-2">PERSONALISED</p></div>
+<div><div class="text-3xl font-serif">42</div><p class="muted text-xs mt-2">DESIGN FEATURES</p></div>
+<div><div class="text-3xl font-serif text-yellow-500">24/7</div><p class="muted text-xs mt-2">CONCIERGE</p></div>
+</div>
+</div>
+</section>
+
+<section id="properties" class="section">
+<div class="wrap">
+<p class="text-yellow-500 text-xs tracking-[4px] uppercase">Curated Portfolio</p>
+<h2 class="font-serif text-4xl mt-3 mb-8">Signature Residences</h2>
+<div id="propertiesGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-7"></div>
+</div>
+</section>
+
+<section id="floorplans" class="section bg-[#0A101A]">
+<div class="wrap">
+<div class="text-center mb-12">
+<p class="text-yellow-500 text-xs tracking-[4px] uppercase">Architectural Blueprints</p>
+<h2 class="font-serif text-4xl mt-3">Interactive Floor Plans</h2>
+<p class="muted mt-4">Explore our signature residential layouts.</p>
+</div>
+
+<div class="grid lg:grid-cols-2 gap-8 items-center">
+<div class="card p-6">
+<div class="flex flex-wrap gap-2 mb-6">
+<button class="plan-tab active" onclick="switchPlan('villa',this)">Villa</button>
+<button class="plan-tab" onclick="switchPlan('penthouse',this)">Penthouse</button>
+<button class="plan-tab" onclick="switchPlan('waterfront',this)">Waterfront</button>
+</div>
+<div id="blueprint"></div>
+</div>
+
+<div>
+<p class="text-yellow-500 text-xs uppercase tracking-[3px]">Signature Collection</p>
+<h3 id="planTitle" class="font-serif text-3xl mt-3">The Verdant Residence</h3>
+<p id="planDesc" class="muted leading-7 mt-4">A contemporary architectural residence.</p>
+
+<div class="grid grid-cols-2 gap-4 mt-7">
+<div class="card p-4"><p class="muted text-xs">INTERIOR AREA</p><strong id="planArea">5,200 sq.ft</strong></div>
+<div class="card p-4"><p class="muted text-xs">PRIVATE DECK</p><strong id="planDeck">1,000 sq.ft</strong></div>
+<div class="card p-4"><p class="muted text-xs">CEILING HEIGHT</p><strong id="planCeiling">12 ft</strong></div>
+<div class="card p-4"><p class="muted text-xs">PARKING</p><strong id="planParking">3 Spaces</strong></div>
+</div>
+
+<button class="gold-btn mt-7" onclick="openBooking(document.getElementById('planTitle').textContent)">Request Floor Plan</button>
+</div>
+</div>
+</div>
+</section>
+
+<section id="calculator" class="section">
+<div class="wrap">
+<div class="text-center mb-12">
+<p class="text-yellow-500 text-xs tracking-[4px] uppercase">Financial Planning</p>
+<h2 class="font-serif text-4xl mt-3">Mortgage Calculator</h2>
+<p class="muted mt-4">Estimate your monthly mortgage payments.</p>
+</div>
+
+<div class="grid lg:grid-cols-2 gap-8">
+<div class="card p-7 space-y-7">
+<div>
+<div class="flex justify-between"><label>Property Price</label><strong id="priceLabel">$2,500,000</strong></div>
+<input id="price" type="range" min="500000" max="10000000" step="50000" value="2500000" oninput="calculateMortgage()">
+</div>
+<div>
+<div class="flex justify-between"><label>Down Payment</label><strong id="downLabel">20%</strong></div>
+<input id="down" type="range" min="5" max="80" value="20" oninput="calculateMortgage()">
+</div>
+<div>
+<div class="flex justify-between"><label>Interest Rate</label><strong id="rateLabel">6.5%</strong></div>
+<input id="rate" type="range" min="1" max="15" step=".1" value="6.5" oninput="calculateMortgage()">
+</div>
+<div>
+<div class="flex justify-between"><label>Loan Tenure</label><strong id="yearsLabel">30 Years</strong></div>
+<input id="years" type="range" min="5" max="30" value="30" oninput="calculateMortgage()">
+</div>
+</div>
+
+<div class="card p-8">
+<p class="muted text-xs tracking-[3px] uppercase">Monthly Payment</p>
+<div id="monthlyPayment" class="font-serif text-5xl text-yellow-500 mt-4">$12,000</div>
+<p class="muted text-sm mt-2">Estimated principal and interest</p>
+<hr class="border-slate-700 my-6">
+<div class="flex justify-between mb-4"><span class="muted">Loan Amount</span><strong id="loanAmount"></strong></div>
+<div class="flex justify-between"><span class="muted">Total Repayment</span><strong id="totalPayment"></strong></div>
+<p class="muted text-xs mt-6">Illustrative estimate only. Actual loan terms and fees may vary.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="concierge" class="section bg-[#0A101A]">
+<div class="wrap grid md:grid-cols-2 gap-10 items-center">
+<div>
+<p class="text-yellow-500 text-xs tracking-[4px] uppercase">Bespoke Services</p>
+<h2 class="font-serif text-4xl mt-3">Your Private Concierge</h2>
+<p class="muted leading-7 mt-5">A personalised experience from your first enquiry to your private property tour.</p>
+<ul class="muted space-y-3 mt-6">
+<li>✓ Private property viewings</li>
+<li>✓ Residence and floor-plan information</li>
+<li>✓ Personalised property shortlists</li>
+<li>✓ Private consultation</li>
+</ul>
+<button class="gold-btn mt-8" onclick="openBooking('VIP Concierge Consultation')">Contact Concierge</button>
+</div>
+<div class="card">
+<img class="w-full h-80 object-cover" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80" alt="Luxury interior">
+</div>
+</div>
+</section>
+
+<footer class="border-t border-slate-800 py-10">
+<div class="wrap flex flex-col md:flex-row gap-5 justify-between items-center">
+<div>
+<div class="font-serif tracking-widest">VERDANT LUXE</div>
+<p class="muted text-xs mt-2">Bespoke Architectural Estates & Penthouses</p>
+</div>
+<div class="muted text-xs">© <span id="year"></span> Verdant Luxe Estates. All rights reserved.</div>
+<a href="#" class="text-yellow-500 text-sm">Back to top ↑</a>
+</div>
+</footer>
+
+<div id="bookingModal" class="modal" onclick="if(event.target===this)closeBooking()">
+<div class="modal-box">
+<button class="float-right text-2xl" onclick="closeBooking()">×</button>
+<p class="text-yellow-500 text-xs tracking-[3px] uppercase mt-3">Private Appointment</p>
+<h2 class="font-serif text-3xl mt-3">Schedule a Tour</h2>
+<p id="bookingSubtitle" class="muted text-sm mt-2"></p>
+<form id="bookingForm" class="space-y-4 mt-6" onsubmit="submitBooking(event)">
+<input type="hidden" id="selectedProperty">
+<div><label>Your Name</label><input id="customerName" class="field" required placeholder="Full name"></div>
+<div><label>Email Address</label><input id="customerEmail" type="email" class="field" required placeholder="you@example.com"></div>
+<div><label>Preferred Date</label><input id="tourDate" type="date" class="field" required></div>
+<div><label>Message</label><textarea id="message" class="field" rows="3" placeholder="Tell us what you are looking for"></textarea></div>
+<button class="gold-btn w-full" type="submit">Submit Enquiry</button>
+<p class="muted text-xs">Demo form: this does not send data to a server.</p>
+</form>
+</div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+const properties=[
+{
+id:1,type:"villa",title:"The Verdant Residence",
+location:"Beverly Hills, California",
+price:2500000,priceText:"$2,500,000",beds:4,baths:5,area:"5,200",
+image:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80",
+description:"A contemporary architectural residence featuring open living spaces, a private garden and elegant finishes."
+},
+{
+id:2,type:"penthouse",title:"Azure Sky Penthouse",
+location:"Manhattan, New York",
+price:4200000,priceText:"$4,200,000",beds:3,baths:4,area:"3,800",
+image:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=80",
+description:"A sophisticated sky residence with refined interiors and panoramic city views."
+},
+{
+id:3,type:"waterfront",title:"Azure Marina Haven",
+location:"Miami, Florida",
+price:6800000,priceText:"$6,800,000",beds:5,baths:6,area:"9,600",
+image:"https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1000&q=80",
+description:"A coastal estate with resort-inspired spaces, private outdoor living and striking water views."
+},
+{
+id:4,type:"villa",title:"The Solstice Villa",
+location:"Scottsdale, Arizona",
+price:2200000,priceText:"$2,200,000",beds:4,baths:4,area:"4,600",
+image:"https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1000&q=80",
+description:"A modern villa combining natural materials, generous entertaining areas and tranquil outdoor spaces."
+},
+{
+id:5,type:"penthouse",title:"The Obsidian Sky Suite",
+location:"Chicago, Illinois",
+price:3900000,priceText:"$3,900,000",beds:3,baths:3,area:"3,400",
+image:"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=80",
+description:"A sleek penthouse with premium finishes, spacious living areas and skyline views."
+},
+{
+id:6,type:"waterfront",title:"The Azure Coast Estate",
+location:"Malibu, California",
+price:7200000,priceText:"$7,200,000",beds:5,baths:6,area:"8,900",
+image:"https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=1000&q=80",
+description:"A private coastal retreat with generous terraces and relaxed luxury living."
+}
+];
+
+function renderProperties(){
+const type=document.getElementById("filterType").value;
+const beds=document.getElementById("filterBeds").value;
+const price=document.getElementById("filterPrice").value;
+const grid=document.getElementById("propertiesGrid");
+
+const filtered=properties.filter(p=>
+(type==="all"||p.type===type)&&
+(beds==="all"||(beds==="5"?p.beds>=5:p.beds===Number(beds)))&&
+(price==="all"||p.price<=Number(price))
+);
+
+grid.innerHTML=filtered.map(p=>`
+<article class="card">
+<img src="${p.image}" alt="${p.title}" class="w-full h-60 object-cover" loading="lazy">
+<div class="p-6">
+<p class="muted text-xs uppercase">${p.location}</p>
+<h3 class="font-serif text-xl mt-2">${p.title}</h3>
+<p class="text-yellow-500 text-2xl mt-4">${p.priceText}</p>
+<div class="flex gap-4 border-t border-slate-700 mt-5 pt-4 text-sm muted">
+<span>${p.beds} Beds</span><span>${p.baths} Baths</span><span>${p.area} sq.ft</span>
+</div>
+<p class="muted text-sm leading-6 mt-4">${p.description}</p>
+<button class="gold-btn mt-5 w-full" onclick="openBooking('${p.title}')">Schedule a Tour</button>
+</div>
+</article>`).join("");
+}
+
+const plans={
+villa:{
+title:"The Verdant Residence",
+desc:"A flowing architectural layout connecting grand entertaining spaces with private suites and an outdoor terrace.",
+area:"5,200 sq.ft",deck:"1,000 sq.ft",ceiling:"12 ft",parking:"3 Spaces",
+rooms:[["Grand Living",35,35,180,80],["Primary Suite",35,140,130,65],["Kitchen & Dining",210,140,160,65]]
+},
+penthouse:{
+title:"Azure Sky Penthouse",
+desc:"An elevated plan with a central sky salon, private bedroom suites and generous entertaining space.",
+area:"3,800 sq.ft",deck:"1,200 sq.ft",ceiling:"14 ft",parking:"3 Spaces",
+rooms:[["Sky Salon",70,35,250,80],["West Suite",35,145,155,65],["East Suite",270,145,155,65]]
+},
+waterfront:{
+title:"Azure Marina Haven",
+desc:"A coastal layout with a grand great room, spa wing and a generous outdoor promenade.",
+area:"9,600 sq.ft",deck:"3,800 sq.ft",ceiling:"11.5 ft",parking:"6 Spaces",
+rooms:[["Great Room",30,35,400,80],["Spa & Lanai",95,140,260,55],["Yacht Promenade",30,220,400,45]]
+}
+};
+
+function switchPlan(key,button){
+const p=plans[key];
+document.getElementById("planTitle").textContent=p.title;
+document.getElementById("planDesc").textContent=p.desc;
+document.getElementById("planArea").textContent=p.area;
+document.getElementById("planDeck").textContent=p.deck;
+document.getElementById("planCeiling").textContent=p.ceiling;
+document.getElementById("planParking").textContent=p.parking;
+
+document.querySelectorAll(".plan-tab").forEach(b=>b.classList.remove("active"));
+button.classList.add("active");
+
+document.getElementById("blueprint").innerHTML=`
+<svg viewBox="0 0 480 290" class="w-full" role="img" aria-label="${p.title} floor plan">
+<rect x="5" y="5" width="470" height="280" rx="8" fill="#080C13" stroke="#334155"/>
+${p.rooms.map(r=>`
+<rect x="${r[1]}" y="${r[2]}" width="${r[3]}" height="${r[4]}" fill="#D4AF3718" stroke="#D4AF37" stroke-width="2"/>
+<text x="${r[1]+r[3]/2}" y="${r[2]+r[4]/2}" fill="#F3E5AB" font-size="11" text-anchor="middle">${r[0]}</text>
+`).join("")}
+<text x="240" y="270" fill="#9B8040" font-size="10" text-anchor="middle">ILLUSTRATIVE FLOOR PLAN</text>
+</svg>`;
+}
+
+function calculateMortgage(){
+const price=Number(document.getElementById("price").value);
+const down=Number(document.getElementById("down").value);
+const annual=Number(document.getElementById("rate").value);
+const years=Number(document.getElementById("years").value);
+const loan=price*(1-down/100);
+const months=years*12;
+const r=annual/1200;
+const payment=r===0?loan/months:loan*r*Math.pow(1+r,months)/(Math.pow(1+r,months)-1);
+const money=n=>"$"+Math.round(n).toLocaleString("en-US");
+
+document.getElementById("priceLabel").textContent=money(price);
+document.getElementById("downLabel").textContent=down+"%";
+document.getElementById("rateLabel").textContent=annual.toFixed(1)+"%";
+document.getElementById("yearsLabel").textContent=years+" Years";
+document.getElementById("monthlyPayment").textContent=money(payment);
+document.getElementById("loanAmount").textContent=money(loan);
+document.getElementById("totalPayment").textContent=money(payment*months);
+}
+
+function openBooking(property){
+document.getElementById("selectedProperty").value=property;
+document.getElementById("bookingSubtitle").textContent="Appointment regarding: "+property;
+document.getElementById("bookingModal").classList.add("show");
+}
+
+function closeBooking(){
+document.getElementById("bookingModal").classList.remove("show");
+}
+
+function submitBooking(event){
+event.preventDefault();
+const name=document.getElementById("customerName").value;
+const property=document.getElementById("selectedProperty").value;
+closeBooking();
+showToast("Thank you, "+name+"! Your demo enquiry for "+property+" has been recorded.");
+document.getElementById("bookingForm").reset();
+}
+
+function showToast(message){
+const toast=document.getElementById("toast");
+toast.textContent=message;
+toast.style.display="block";
+setTimeout(()=>toast.style.display="none",4000);
+}
+
+document.getElementById("year").textContent=new Date().getFullYear();
+renderProperties();
+switchPlan("villa",document.querySelector(".plan-tab"));
+calculateMortgage();
+
+document.addEventListener("keydown",event=>{
+if(event.key==="Escape")closeBooking();
+});
+</script>
+</body>
+</html>
